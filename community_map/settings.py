@@ -32,7 +32,6 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = ["community-service-finder.onreader.com","localhost", "127.0.0.1"]
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST","").split(",")
 
 
 # Application definition
