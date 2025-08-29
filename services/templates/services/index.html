@@ -1,0 +1,59 @@
+{% extends 'services/base.html' %}
+{% load static %}
+
+
+{% block title %}Community Service Map{% endblock %}
+
+
+{% block content %}
+    <div class="row g-3 align-items-end">
+        <div class="col-12 col-lg-8">
+            <label class="form-label">Search any place (optional)</label>
+            <div class="input-group">
+                <input id="searchInput" type="text" class="form-control" placeholder="e.g., pharmacy, blood bank, NGO" />
+                <button id="searchBtn" class="btn btn-outline-primary">Search</button>
+                <button id="clearBtn" class="btn btn-outline-secondary">Clear</button>
+            </div>
+            <small class="text-muted">Search uses a keyword around the current map center.</small>
+        </div>
+        <div class="col-12 col-lg-4 text-lg-end">
+            <div class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-danger" data-type="hospital">🏥 Hospitals</button>
+                <button class="btn btn-primary" data-type="police">👮 Police</button>
+                <button class="btn btn-warning" data-type="fire_station">🔥 Fire</button>
+                <button class="btn btn-success" data-type="shelter">🏠 Shelters</button>
+                <button class="btn btn-info" data-type="school">🏫 Schools</button>
+                <button class="btn btn-secondary" data-type="library">📚 Libraries</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mt-3 d-flex justify-content-between align-items-center">
+        <div>
+            <span class="badge text-bg-light" id="locationBadge">Center: —</span>
+        </div>
+        <div class="d-flex gap-2">
+            <button id="useMyLocation" class="btn btn-outline-dark">Use My Location</button>
+            <button id="recenterDefault" class="btn btn-outline-dark">Recenter Default</button>
+        </div>
+    </div>
+
+
+    <div id="map" class="mt-3 shadow-sm rounded"></div>
+
+
+    <div class="mt-3 d-flex justify-content-center">
+        <button id="loadMore" class="btn btn-outline-primary d-none">Load More Results</button>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        // Inject the key for the Google Maps JS loader
+        window.GOOGLE_MAPS_API_KEY = "{{ api_key }}";
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&libraries=places"></script>
+    <script src="{% static 'services/main.js' %}"></script>
+{% endblock %}
